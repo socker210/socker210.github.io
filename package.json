@@ -1,12 +1,16 @@
 {
   "name": "socker210.github.io",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "socker210.github.io blog",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gatsby build && gh-pages -d public -b master"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "socker210",
+  "license": "MIT",
+  "devDependencies": {
+    "gatsby": "^2.10.4",
+    "gh-pages": "^2.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
 }
