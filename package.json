@@ -1,12 +1,12 @@
 {
   "name": "socker210.github.io",
-  "version": "1.0.0",
-  "description": "socker210.github.io blog",
-  "scripts": {
-    "deploy": "gatsby build && gh-pages -d public -b master"
-  },
   "author": "socker210",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint --fix src",
+    "dev": "gatsby develop -p 3000",
+    "deploy": "gatsby build && gh-pages -d public -b master"
+  },
   "devDependencies": {
     "eslint": "^6.0.1",
     "eslint-config-standard": "^12.0.0",
