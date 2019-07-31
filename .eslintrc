@@ -1,7 +1,0 @@
-{
-  "extends": ["standard", "standard-react"],
-  "rules": {
-    "eol-last": 0,
-    "no-unused-vars": 1
-  }
-}

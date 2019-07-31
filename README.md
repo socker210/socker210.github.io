@@ -1,1 +1,0 @@
-[Go my web site](https://socker210.github.io)
