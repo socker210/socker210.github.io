@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"lib": ["DOM"],
+		"target": "ES2018",
+		"noEmit": true,
+		"strict": true,
+		"alwaysStrict": true,
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"strictFunctionTypes": true,
+		"strictBindCallApply": true,
+		"strictNullChecks": true,
+		"strictPropertyInitialization": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"moduleResolution": "node",
+		"baseUrl": "."
+	},
+	"include": ["src/**/*"]
+}

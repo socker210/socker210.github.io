@@ -1,0 +1,13 @@
+# Folders
+node_modules/
+dist/
+public/
+
+# Files
+**/*.json
+**/*.md
+**/*.html
+**/*.sass
+**/*.scss
+**/*.css
+**/*-lock.*
