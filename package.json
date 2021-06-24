@@ -17,10 +17,15 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "lint-staged": {
-    "*.{ts,tsx}": ["pnpm lint:fix", "pnpm prettier:fix", "git add"]
+    "*.{ts,tsx}": [
+      "pnpm lint:fix",
+      "pnpm prettier:fix"
+    ]
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -32,6 +37,11 @@
     "@babel/preset-env": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.14.5",
+    "@storybook/addon-actions": "^6.3.0",
+    "@storybook/addon-essentials": "^6.3.0",
+    "@storybook/addon-links": "^6.3.0",
+    "@storybook/cli": "^6.3.0",
+    "@storybook/react": "^6.3.0",
     "@types/react": "^17.0.11",
     "@types/react-dom": "^17.0.7",
     "autoprefixer": "^10.2.6",
