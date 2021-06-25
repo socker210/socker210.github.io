@@ -1,8 +1,12 @@
 import React from 'react'
-import { Meta } from '@storybook/react'
+import { Meta, Story } from '@storybook/react'
 
-const Component: React.FC = () => {
-  return <h1>HAHA</h1>
+type Props = {
+  color: string
+}
+
+const Component: React.FC<Props> = ({ color }) => {
+  return <h1 style={{ color }}>HAHA</h1>
 }
 
 export default {
@@ -10,4 +14,16 @@ export default {
   component: Component,
 } as Meta
 
-export const Primary: React.VFC = () => <Component />
+const Template: Story<Props> = ({ color }) => <Component color={color} />
+
+export const Primary = Template.bind({})
+
+Primary.args = {
+  color: '#FF0000',
+}
+
+export const Secondary = Template.bind({})
+
+Secondary.args = {
+  color: '#FF00FF',
+}

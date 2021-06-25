@@ -4,6 +4,9 @@ const tsReact = {
     project: 'tsconfig.json',
   },
   extends: 'forme/typescript-react',
+  rules: {
+    'react/prop-types': 'off',
+  },
 }
 
 module.exports = {
