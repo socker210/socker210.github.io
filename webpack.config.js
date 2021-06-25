@@ -1,7 +1,18 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = {
+const modules = {
+  ts: {
+    test: /\.tsx?$/,
+    use: 'babel-loader',
+  },
+  css: {
+    test: /\.css$/,
+    use: ['style-loader', 'css-loader', 'postcss-loader'],
+  },
+}
+
+const webpackConfig = {
   mode: 'development',
   entry: path.resolve(__dirname, 'src', 'App.tsx'),
   devServer: {
@@ -10,20 +21,16 @@ module.exports = {
     port: 3000,
   },
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: 'babel-loader',
-      },
-      {
-        test: /\.css/,
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
-      },
-    ],
+    rules: [{ ...modules.ts }, { ...modules.css }],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'template.html',
     }),
   ],
+}
+
+module.exports = {
+  modules,
+  default: webpackConfig,
 }
