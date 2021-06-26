@@ -15,6 +15,7 @@ specifiers:
   '@types/react-dom': ^17.0.7
   autoprefixer: ^10.2.6
   babel-loader: ^8.2.2
+  babel-plugin-module-resolver: ^4.1.0
   css-loader: ^5.2.6
   eslint: ^7.28.0
   eslint-config-forme: ^1.0.3
@@ -56,6 +57,7 @@ devDependencies:
   '@types/react-dom': 17.0.8
   autoprefixer: 10.2.6_postcss@8.3.5
   babel-loader: 8.2.2_1ef96c0ff5bf278057a4bc2ae1f672a2
+  babel-plugin-module-resolver: 4.1.0
   css-loader: 5.2.6_webpack@5.40.0
   eslint: 7.29.0
   eslint-config-forme: 1.0.3_a8bcf9f9d803944b9fd92862c2ebf3c1
@@ -4493,6 +4495,17 @@ packages:
       resolve: 1.20.0
     dev: true
 
+  /babel-plugin-module-resolver/4.1.0:
+    resolution: {integrity: sha512-MlX10UDheRr3lb3P0WcaIdtCSRlxdQsB1sBqL7W0raF070bGl1HQQq5K3T2vf2XAYie+ww+5AKC/WrkjRO2knA==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      find-babel-config: 1.2.0
+      glob: 7.1.7
+      pkg-up: 3.1.0
+      reselect: 4.0.0
+      resolve: 1.20.0
+    dev: true
+
   /babel-plugin-named-asset-import/0.3.7_@babel+core@7.14.6:
     resolution: {integrity: sha512-squySRkf+6JGnvjoUtDEjSREJEBirnXi9NqP6rjSYsylxQxqBTz+pkmf395i9E2zsvmYUaI40BHo6SqZUdydlw==}
     peerDependencies:
@@ -6941,6 +6954,14 @@ packages:
       unpipe: 1.0.0
     dev: true
 
+  /find-babel-config/1.2.0:
+    resolution: {integrity: sha512-jB2CHJeqy6a820ssiqwrKMeyC6nNdmrcgkKWJWmpoxpE8RKciYJXCcXRq1h2AzCo5I5BJeN2tkGEO3hLTuePRA==}
+    engines: {node: '>=4.0.0'}
+    dependencies:
+      json5: 0.5.1
+      path-exists: 3.0.0
+    dev: true
+
   /find-cache-dir/2.1.0:
     resolution: {integrity: sha512-Tq6PixE0w/VMFfCgbONnkiQIVol/JJL7nRMi20fqzA4NRs9AfeqMGeRdPi3wIhYkxjeBaWh2rxwapn5Tu3IqOQ==}
     engines: {node: '>=6'}
@@ -9240,6 +9261,11 @@ packages:
 
   /json3/3.3.3:
     resolution: {integrity: sha512-c7/8mbUsKigAbLkD5B010BK4D9LZm7A1pNItkEwiUZRpIN66exu/e7YQWysGun+TRKaJp8MhemM+VkfWv42aCA==}
+    dev: true
+
+  /json5/0.5.1:
+    resolution: {integrity: sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=}
+    hasBin: true
     dev: true
 
   /json5/1.0.1:
@@ -11813,6 +11839,10 @@ packages:
 
   /requires-port/1.0.0:
     resolution: {integrity: sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=}
+    dev: true
+
+  /reselect/4.0.0:
+    resolution: {integrity: sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==}
     dev: true
 
   /resolve-cwd/2.0.0:

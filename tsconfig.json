@@ -16,7 +16,11 @@
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
-		"baseUrl": "."
+		"baseUrl": ".",
+		"paths": {
+			"components/*": ["src/components/*"]
+		},
+		"typeRoots": ["node_modules/@types", "typings"]
 	},
-	"include": ["src/**/*"]
+	"include": ["src/**/*", "stories/**/*"]
 }

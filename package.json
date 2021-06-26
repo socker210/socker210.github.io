@@ -16,16 +16,11 @@
     "lint:fix": "pnpm lint -- --fix",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
+    "type": "tsc -p tsconfig.json",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "pnpm lint:fix",
-      "pnpm prettier:fix"
-    ]
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -47,6 +42,7 @@
     "@types/react-dom": "^17.0.7",
     "autoprefixer": "^10.2.6",
     "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
     "css-loader": "^5.2.6",
     "eslint": "^7.28.0",
     "eslint-config-forme": "^1.0.3",
