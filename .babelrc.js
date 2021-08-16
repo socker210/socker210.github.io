@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   plugins: [
     [
@@ -5,7 +7,8 @@ module.exports = {
       {
         root: ['.'],
         alias: {
-          components: 'src/components',
+          pages: './src/pages',
+          components: './src/components',
         },
       },
     ],
