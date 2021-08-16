@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"skipLibCheck": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"lib": ["DOM"],
@@ -18,9 +19,11 @@
 		"moduleResolution": "node",
 		"baseUrl": ".",
 		"paths": {
+			"pages/*":["src/pages/*"],
 			"components/*": ["src/components/*"]
 		},
 		"typeRoots": ["node_modules/@types", "typings"]
 	},
-	"include": ["src/**/*", "stories/**/*"]
+	"files": ["routes.config.ts"],
+	"include": ["src/**/*", "stories/**/*", ".storybook/**/*"]
 }

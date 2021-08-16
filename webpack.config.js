@@ -20,6 +20,10 @@ const webpackConfig = {
     host: '0.0.0.0',
     port: 3000,
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '...'],
+    modules: ['node_modules', path.resolve(__dirname)],
+  },
   module: {
     rules: [{ ...modules.ts }, { ...modules.css }],
   },
