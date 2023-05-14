@@ -1,11 +1,23 @@
 import React from 'react'
 import { render } from 'react-dom'
-import './styles/styles.css'
-
-const str = 'Hello World!'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import * as routes from 'routes.config'
+import PageNotFound from './PageNotFound'
+import './app.css'
 
 const App: React.FC = () => {
-  return <h1>{str}</h1>
+  return (
+    <BrowserRouter>
+      <Switch>
+        {Object.values(routes).map((route, i) => {
+          return <Route key={i} {...route} />
+        })}
+        <Route>
+          <PageNotFound />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 const container = document.getElementById('react-root')
