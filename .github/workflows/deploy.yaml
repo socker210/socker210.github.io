@@ -8,19 +8,15 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.PAGES_DEPLOYMENT }}
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8.5.0
-
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.5.0
       - name: Setup node
         uses: actions/setup-node@v3
         with:
