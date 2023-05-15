@@ -8,6 +8,14 @@ env:
   NODE_AUTH_TOKEN: ${{ secrets.PAGES_DEPLOYMENT }}
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.5.0
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,6 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
+
   deploy:
     environment:
       name: github-pages
