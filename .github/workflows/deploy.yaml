@@ -7,6 +7,9 @@ on:
 env:
   NODE_AUTH_TOKEN: ${{ secrets.PAGES_DEPLOYMENT }}
 
+permissions:
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
