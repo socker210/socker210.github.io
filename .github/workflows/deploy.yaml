@@ -31,7 +31,7 @@ jobs:
         with:
           path: .next/cache
           key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-      - name: Instlal dependencies
+      - name: Install dependencies
         run: pnpm install
       - name: Build next
         run: pnpm next build
