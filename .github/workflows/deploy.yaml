@@ -1,0 +1,49 @@
+name: Deploy personal website to github pages
+
+on:
+  push:
+    branches: ['gh-pages']
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.PAGES_DEPLOYMENT }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: v18.12.1
+      - name: Setup pages
+        uses: actions/configure-pages@v1
+        with:
+          static_site_generator: next
+      - name: Restore cache
+        uses: actions/cache@v3
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: Instlal dependencies
+        run: pnpm install
+      - name: Build next
+        run: pnpm next build
+      - name: Export static files
+        run: pnpm next export
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./out
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to github pages
+        id: deployment
+        uses: actions/deploy-pages@v1

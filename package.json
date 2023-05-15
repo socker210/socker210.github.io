@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
   "name": "socker210.github.io",
-  "description": "Github personal blog",
+  "description": "Github pages for personal website",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
