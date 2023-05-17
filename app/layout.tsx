@@ -6,8 +6,8 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Personal blog',
+  title: 'Junyong Park | Frontend Developer',
+  description: '',
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
