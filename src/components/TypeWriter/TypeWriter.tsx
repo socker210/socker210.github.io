@@ -74,7 +74,7 @@ const tokenize = (source: Node, container: HTMLElement): Token[] => {
 const typing = (tokens: Token[], typeSpeed: number): { start: () => void } => {
   let index = 0
 
-  const start = () => {
+  const start = (): void => {
     const data = tokens[index++]
     const speed = typeSpeed === -1 ? Math.random() * 50 + 10 : typeSpeed
     const duration = data.type === 'text' ? speed : 0
@@ -125,6 +125,10 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
 
   useEffect(() => {
     if (sourceRef.current && targetRef.current) {
+      for (const child of targetRef.current.childNodes) {
+        targetRef.current.removeChild(child)
+      }
+
       const tokens: Array<Token> = tokenize(
         sourceRef.current.firstChild as Node,
         targetRef.current

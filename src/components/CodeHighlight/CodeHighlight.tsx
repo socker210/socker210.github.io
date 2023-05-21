@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { lowlight } from 'lowlight'
 import type { Span, Text as llText } from 'lowlight/lib/core'
 import './theme.css'
@@ -104,11 +104,7 @@ const Text: React.FC<{ children: ReactNode }> = ({ children }) => {
 }
 
 const CodeHighlight: React.FC<CodeHighlightProps> = ({ text }) => {
-  const [rows, setRows] = useState<Node[][]>([])
-
-  useEffect(() => {
-    setRows(refineAST(text))
-  }, [text])
+  const rows = refineAST(text)
 
   return (
     <Pre>
