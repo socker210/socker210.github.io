@@ -1,5 +1,5 @@
 const extensions = ['js', 'ts', 'jsx', 'tsx', 'mdx']
-const path = ['app', 'src']
+const path = ['pages', 'src']
 
 const content = path.map((d) => `./${d}/**/*.{${extensions.join(',')}}`)
 

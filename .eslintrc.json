@@ -1,8 +1,14 @@
 {
+  "root": true,
   "extends": [
     "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
     "plugin:storybook/recommended",
     "plugin:prettier/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["app/**/*.{ts,tsx}", "src/**/*.{ts,tsx}"],
+      "extends": ["plugin:@typescript-eslint/recommended"]
+    }
   ]
 }
