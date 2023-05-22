@@ -19,5 +19,13 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag',
   },
+  babel: async (options) => {
+    options.plugins = options.plugins || []
+
+    return {
+      ...options,
+      plugins: [...options.plugins, 'babel-plugin-macros'],
+    }
+  },
 }
 export default config
