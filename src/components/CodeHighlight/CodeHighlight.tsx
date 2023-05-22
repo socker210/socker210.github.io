@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { lowlight } from 'lowlight'
 import type { Span, Text as llText } from 'lowlight/lib/core'
 import './theme.css'

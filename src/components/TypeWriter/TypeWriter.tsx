@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useEffect, useState, ReactNode, ElementType } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import type { ReactNode, ElementType } from 'react'
 
 interface TypeWriterProps {
   container?: ElementType
@@ -141,12 +142,12 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   const Container = container || 'div'
 
   return (
-    <>
-      <div ref={sourceRef} className='fixed z-[-1] hidden h-0 w-0'>
+    <div tw='relative'>
+      <div ref={sourceRef} tw='invisible'>
         {children}
       </div>
-      <Container ref={targetRef} className='contents' />
-    </>
+      <Container ref={targetRef} tw='absolute top-0 left-0' />
+    </div>
   )
 }
 

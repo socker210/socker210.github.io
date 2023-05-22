@@ -33,6 +33,9 @@ devDependencies:
   '@emotion/babel-plugin':
     specifier: ^11.11.0
     version: 11.11.0
+  '@emotion/babel-preset-css-prop':
+    specifier: ^11.11.0
+    version: 11.11.0(@babel/core@7.21.8)
   '@storybook/addon-essentials':
     specifier: ^7.0.12
     version: 7.0.12(react-dom@18.2.0)(react@18.2.0)
@@ -75,6 +78,9 @@ devDependencies:
   babel-plugin-macros:
     specifier: ^3.1.0
     version: 3.1.0
+  babel-plugin-twin:
+    specifier: ^1.1.0
+    version: 1.1.0
   eslint:
     specifier: 8.40.0
     version: 8.40.0
@@ -1465,6 +1471,15 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: true
 
+  /@emotion/babel-plugin-jsx-pragmatic@0.2.1(@babel/core@7.21.8):
+    resolution: {integrity: sha512-xy1SlgEJygAAIvIuC2idkGKJYa6v5iwoyILkvNKgk347bV+IImXrUat5Z86EmLGyWhEoTplVT9EHqTnHZG4HFw==}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/plugin-syntax-jsx': 7.21.4(@babel/core@7.21.8)
+    dev: true
+
   /@emotion/babel-plugin@11.11.0:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}
     dependencies:
@@ -1479,6 +1494,18 @@ packages:
       find-root: 1.1.0
       source-map: 0.5.7
       stylis: 4.2.0
+
+  /@emotion/babel-preset-css-prop@11.11.0(@babel/core@7.21.8):
+    resolution: {integrity: sha512-+1Cba68IyBeltWzvbBSXcBWqP2eKQuQcSUpIu3ma4pOUeRol4EvwWrYS2Rv51aIVqg066fLB+Z9O/8NKR7uUlQ==}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/plugin-transform-react-jsx': 7.21.5(@babel/core@7.21.8)
+      '@babel/runtime': 7.21.5
+      '@emotion/babel-plugin': 11.11.0
+      '@emotion/babel-plugin-jsx-pragmatic': 0.2.1(@babel/core@7.21.8)
+    dev: true
 
   /@emotion/cache@11.11.0:
     resolution: {integrity: sha512-P34z9ssTCBi3e9EI1ZsWpNHcfY1r09ZO0rZbRO2ob3ZQMnFI35jB536qoXbkdesr5EUhYi22anuEJuyxifaqAQ==}
@@ -4229,6 +4256,12 @@ packages:
       react-docgen: 5.4.3
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /babel-plugin-twin@1.1.0:
+    resolution: {integrity: sha512-x4AZ7JSh8MmC6uEN41nrU021jLA0B4E1UD7AI0KJOtAwvTH1wEMLugW5SyY4m/CWDtsqZc1fqT1lkDoO2rdmHg==}
+    dependencies:
+      '@babel/template': 7.20.7
     dev: true
 
   /balanced-match@1.0.2:

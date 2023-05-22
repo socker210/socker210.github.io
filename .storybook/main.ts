@@ -20,11 +20,13 @@ const config: StorybookConfig = {
     autodocs: 'tag',
   },
   babel: async (options) => {
+    options.presets = options.presets || []
     options.plugins = options.plugins || []
 
     return {
       ...options,
-      plugins: [...options.plugins, 'babel-plugin-macros'],
+      presets: [...options.presets, '@emotion/babel-preset-css-prop'],
+      plugins: [...options.plugins, 'babel-plugin-twin', 'babel-plugin-macros'],
     }
   },
 }
