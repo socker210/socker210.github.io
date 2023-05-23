@@ -38,8 +38,7 @@ const fadeInOut = keyframes`
   }
 `
 
-const Container = styled.div<{ caret: boolean }>`
-  ${() => tw`contents`};
+const Container = styled.p<{ caret: boolean }>`
   ${({ caret }) => ({
     ...(caret && {
       '::after': {
@@ -99,27 +98,34 @@ const tokenize = (source: Node, container: HTMLElement): Token[] => {
   return tokens
 }
 
-const typing = (tokens: Token[], typeSpeed: number): { start: () => void } => {
+const typing = (
+  tokens: Token[],
+  typeSpeed: number
+): { start: () => Promise<void> } => {
   let index = 0
 
-  const start = (): void => {
-    const data = tokens[index++]
-    const speed = typeSpeed === -1 ? Math.random() * 50 + 10 : typeSpeed
-    const duration = data.type === 'text' ? speed : 0
+  const start = (): Promise<void> => {
+    return new Promise((resolve) => {
+      const data = tokens[index++]
+      const speed = typeSpeed === -1 ? Math.random() * 50 + 10 : typeSpeed
+      const duration = data.type === 'text' ? speed : 0
 
-    if (data.type === 'element') {
-      data.container.appendChild(data.value as Node)
-    }
+      if (data.type === 'element') {
+        data.container.appendChild(data.value as Node)
+      }
 
-    if (data.type === 'text') {
-      const container = data.container
+      if (data.type === 'text') {
+        const container = data.container
 
-      container.insertAdjacentText('beforeend', data.value as string)
-    }
+        container.insertAdjacentText('beforeend', data.value as string)
+      }
 
-    if (index < tokens.length) {
-      setTimeout(start, duration)
-    }
+      if (index < tokens.length) {
+        setTimeout(start, duration)
+      } else {
+        resolve()
+      }
+    })
   }
 
   return { start }
@@ -136,6 +142,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   const sourceRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLDivElement>(null)
   const prevSourceHTML = useRef<string>()
+  const typingRef = useRef(false)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -154,16 +161,24 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
 
   useEffect(() => {
     if (sourceRef.current && targetRef.current) {
-      for (const child of targetRef.current.childNodes) {
-        targetRef.current.removeChild(child)
+      if (!typingRef.current) {
+        typingRef.current = true
+
+        for (const child of targetRef.current.childNodes) {
+          targetRef.current.removeChild(child)
+        }
+
+        const tokens: Array<Token> = tokenize(
+          sourceRef.current.firstChild as Node,
+          targetRef.current
+        )
+
+        typing(tokens, typeSpeed)
+          .start()
+          .then(() => {
+            typingRef.current = false
+          })
       }
-
-      const tokens: Array<Token> = tokenize(
-        sourceRef.current.firstChild as Node,
-        targetRef.current
-      )
-
-      typing(tokens, typeSpeed).start()
     }
   }, [renderCount, typeSpeed])
 

@@ -7,7 +7,17 @@ const content = path.map((d) => `./${d}/**/*.{${extensions.join(',')}}`)
 module.exports = {
   content,
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        synthwave: {
+          purple: '#140628',
+        },
+      },
+      fontFamily: {
+        bungee: ['var(--font-bungee)'],
+        notoSansKR: ['var(--font-notoSansKR)'],
+      },
+    },
   },
   plugins: [],
 }
