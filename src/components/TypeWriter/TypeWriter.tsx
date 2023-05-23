@@ -2,10 +2,13 @@
 
 import { useRef, useEffect, useState } from 'react'
 import type { ReactNode, ElementType } from 'react'
+import { keyframes } from '@emotion/react'
+import tw, { styled } from 'twin.macro'
 
 interface TypeWriterProps {
   container?: ElementType
   typeSpeed?: number
+  caret?: boolean
   children: ReactNode
 }
 
@@ -22,6 +25,30 @@ type StringToken = {
 }
 
 type Token = HTMLToken | StringToken
+
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`
+
+const Container = styled.div<{ caret: boolean }>`
+  ${() => tw`contents`};
+  ${({ caret }) => ({
+    ...(caret && {
+      '::after': {
+        content: '"_"',
+        animation: `${fadeInOut} 0.8s ease infinite`,
+      },
+    }),
+  })}
+`
 
 const tokenize = (source: Node, container: HTMLElement): Token[] => {
   const tokens: Token[] = []
@@ -100,6 +127,7 @@ const typing = (tokens: Token[], typeSpeed: number): { start: () => void } => {
 
 const TypeWriter: React.FC<TypeWriterProps> = ({
   typeSpeed = -1,
+  caret = true,
   container,
   children,
 }) => {
@@ -139,15 +167,13 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
     }
   }, [renderCount, typeSpeed])
 
-  const Container = container || 'div'
-
   return (
-    <div tw='relative'>
-      <div ref={sourceRef} tw='invisible'>
+    <>
+      <div ref={sourceRef} tw='fixed hidden w-0 h-0'>
         {children}
       </div>
-      <Container ref={targetRef} tw='absolute top-0 left-0' />
-    </div>
+      <Container ref={targetRef} as={container} caret={caret} />
+    </>
   )
 }
 

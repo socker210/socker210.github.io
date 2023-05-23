@@ -1,6 +1,7 @@
 import React from 'react'
 import type { Preview } from '@storybook/react'
 import GlobalStyles from '../styles/GlobalStyles'
+import '../styles/hljs-theme.css'
 
 const preview: Preview = {
   decorators: [
