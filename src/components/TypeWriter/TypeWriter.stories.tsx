@@ -11,8 +11,11 @@ const meta: Meta<typeof TypeWriter> = {
 export const Primary: Story = {
   render: () => (
     <TypeWriter>
-      <h1>HAHA1</h1>
-      <h1>HAHA2</h1>
+      <span>
+        <span>HAHA1</span>
+        <br />
+        <span>HAHA2</span>
+      </span>
     </TypeWriter>
   ),
 }
@@ -20,7 +23,7 @@ export const Primary: Story = {
 export const WithComponent: Story = {
   render: () => {
     const Comp: React.FC = () => {
-      return <h1 className='text-red-400'>Component</h1>
+      return <span className='text-red-400'>Component</span>
     }
 
     return (
