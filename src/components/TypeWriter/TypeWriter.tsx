@@ -1,10 +1,14 @@
 'use client'
 
-import { useRef, useEffect, useState, ReactNode, ElementType } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import type { ReactNode, ElementType } from 'react'
+import { keyframes } from '@emotion/react'
+import tw, { styled } from 'twin.macro'
 
 interface TypeWriterProps {
   container?: ElementType
   typeSpeed?: number
+  caret?: boolean
   children: ReactNode
 }
 
@@ -21,6 +25,29 @@ type StringToken = {
 }
 
 type Token = HTMLToken | StringToken
+
+const fadeInOut = keyframes`
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+`
+
+const Container = styled.p<{ caret: boolean }>`
+  ${({ caret }) => ({
+    ...(caret && {
+      '::after': {
+        content: '"_"',
+        animation: `${fadeInOut} 0.8s ease infinite`,
+      },
+    }),
+  })}
+`
 
 const tokenize = (source: Node, container: HTMLElement): Token[] => {
   const tokens: Token[] = []
@@ -71,27 +98,34 @@ const tokenize = (source: Node, container: HTMLElement): Token[] => {
   return tokens
 }
 
-const typing = (tokens: Token[], typeSpeed: number): { start: () => void } => {
+const typing = (
+  tokens: Token[],
+  typeSpeed: number
+): { start: () => Promise<void> } => {
   let index = 0
 
-  const start = (): void => {
-    const data = tokens[index++]
-    const speed = typeSpeed === -1 ? Math.random() * 50 + 10 : typeSpeed
-    const duration = data.type === 'text' ? speed : 0
+  const start = (): Promise<void> => {
+    return new Promise((resolve) => {
+      const data = tokens[index++]
+      const speed = typeSpeed === -1 ? Math.random() * 50 + 10 : typeSpeed
+      const duration = data.type === 'text' ? speed : 0
 
-    if (data.type === 'element') {
-      data.container.appendChild(data.value as Node)
-    }
+      if (data.type === 'element') {
+        data.container.appendChild(data.value as Node)
+      }
 
-    if (data.type === 'text') {
-      const container = data.container
+      if (data.type === 'text') {
+        const container = data.container
 
-      container.insertAdjacentText('beforeend', data.value as string)
-    }
+        container.insertAdjacentText('beforeend', data.value as string)
+      }
 
-    if (index < tokens.length) {
-      setTimeout(start, duration)
-    }
+      if (index < tokens.length) {
+        setTimeout(start, duration)
+      } else {
+        resolve()
+      }
+    })
   }
 
   return { start }
@@ -99,6 +133,7 @@ const typing = (tokens: Token[], typeSpeed: number): { start: () => void } => {
 
 const TypeWriter: React.FC<TypeWriterProps> = ({
   typeSpeed = -1,
+  caret = true,
   container,
   children,
 }) => {
@@ -107,6 +142,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   const sourceRef = useRef<HTMLDivElement>(null)
   const targetRef = useRef<HTMLDivElement>(null)
   const prevSourceHTML = useRef<string>()
+  const typingRef = useRef(false)
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -125,27 +161,33 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
 
   useEffect(() => {
     if (sourceRef.current && targetRef.current) {
-      for (const child of targetRef.current.childNodes) {
-        targetRef.current.removeChild(child)
+      if (!typingRef.current) {
+        typingRef.current = true
+
+        for (const child of targetRef.current.childNodes) {
+          targetRef.current.removeChild(child)
+        }
+
+        const tokens: Array<Token> = tokenize(
+          sourceRef.current.firstChild as Node,
+          targetRef.current
+        )
+
+        typing(tokens, typeSpeed)
+          .start()
+          .then(() => {
+            typingRef.current = false
+          })
       }
-
-      const tokens: Array<Token> = tokenize(
-        sourceRef.current.firstChild as Node,
-        targetRef.current
-      )
-
-      typing(tokens, typeSpeed).start()
     }
   }, [renderCount, typeSpeed])
 
-  const Container = container || 'div'
-
   return (
     <>
-      <div ref={sourceRef} className='fixed z-[-1] hidden h-0 w-0'>
+      <div ref={sourceRef} tw='fixed hidden w-0 h-0'>
         {children}
       </div>
-      <Container ref={targetRef} className='contents' />
+      <Container ref={targetRef} as={container} caret={caret} />
     </>
   )
 }

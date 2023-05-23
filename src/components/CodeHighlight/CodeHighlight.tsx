@@ -1,13 +1,15 @@
 'use client'
 
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { lowlight } from 'lowlight'
 import type { Span, Text as llText } from 'lowlight/lib/core'
-import './theme.css'
 
 interface CodeHighlightProps {
+  language?: Language
   text: string
 }
+
+type Language = 'html' | 'js'
 
 type Element = {
   type: 'element'
@@ -21,8 +23,6 @@ type Text = {
 }
 
 type Node = Element | Text
-
-const LANGUAGE = 'js'
 
 const hasNewline = (str: string): boolean => {
   return /\n/.test(str)
@@ -47,35 +47,43 @@ const llTextToText = (text: llText): Text => {
   }
 }
 
-const refineAST = (text: string): Node[][] => {
-  const ast = lowlight.highlight(LANGUAGE, text)
+const refineAST = (language: Language, text: string): Node[][] => {
+  const ast = lowlight.highlight(language, text)
 
   const rows: Node[][] = []
   let nodeList: Node[] = []
 
-  for (const tree of ast.children) {
-    if (tree.type === 'text') {
-      if (hasNewline(tree.value)) {
-        const tokens = splitByNewline(tree.value)
+  const exec = (children: (Span | llText)[]): void => {
+    for (const tree of children) {
+      if (tree.type === 'text') {
+        if (hasNewline(tree.value)) {
+          const tokens = splitByNewline(tree.value)
 
-        for (const [i, token] of tokens.entries()) {
-          nodeList.push(llTextToText({ type: 'text', value: token }))
+          for (const [i, token] of tokens.entries()) {
+            nodeList.push(llTextToText({ type: 'text', value: token }))
 
-          if (i < tokens.length - 1) {
-            rows.push(nodeList)
+            if (i < tokens.length - 1) {
+              rows.push(nodeList)
 
-            nodeList = []
+              nodeList = []
+            }
           }
+        } else {
+          nodeList.push(llTextToText(tree as llText))
         }
-      } else {
-        nodeList.push(llTextToText(tree as llText))
+      }
+
+      if (tree.type === 'element') {
+        if (tree.children.length > 1) {
+          exec(tree.children)
+        } else {
+          nodeList.push(llElementToElement(tree as Span))
+        }
       }
     }
-
-    if (tree.type === 'element') {
-      nodeList.push(llElementToElement(tree as Span))
-    }
   }
+
+  exec(ast.children)
 
   if (nodeList.length) {
     rows.push(nodeList)
@@ -103,8 +111,11 @@ const Text: React.FC<{ children: ReactNode }> = ({ children }) => {
   return <span>{children}</span>
 }
 
-const CodeHighlight: React.FC<CodeHighlightProps> = ({ text }) => {
-  const rows = refineAST(text)
+const CodeHighlight: React.FC<CodeHighlightProps> = ({
+  language = 'js',
+  text,
+}) => {
+  const rows = refineAST(language, text)
 
   return (
     <Pre>

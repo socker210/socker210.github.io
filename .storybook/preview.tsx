@@ -1,7 +1,17 @@
+import React from 'react'
 import type { Preview } from '@storybook/react'
-import '../app/globals.css'
+import GlobalStyles from '../styles/GlobalStyles'
+import '../styles/hljs-theme.css'
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <>
+        <GlobalStyles />
+        <Story />
+      </>
+    ),
+  ],
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

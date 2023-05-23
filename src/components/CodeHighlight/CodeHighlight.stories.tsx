@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import CodeHighlight from './CodeHighlight'
 
 const meta: Meta<typeof CodeHighlight> = {
