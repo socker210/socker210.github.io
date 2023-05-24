@@ -16,9 +16,9 @@ module.exports = {
       },
       colors: {
         synthwave: {
-          text: '#e1f9fd',
-          orange: '#F08506',
-          purple: '#140628',
+          primary: '#140628',
+          secondary: '#F08506',
+          contrastText: '#e1f9fd',
         },
       },
       fontFamily: {
