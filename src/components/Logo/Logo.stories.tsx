@@ -4,7 +4,7 @@ import Logo from './Logo'
 type Story = StoryObj<typeof Logo>
 
 const meta: Meta<typeof Logo> = {
-  title: 'Logo',
+  title: 'Component/Logo',
   component: Logo,
 }
 

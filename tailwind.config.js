@@ -1,5 +1,7 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const extensions = ['js', 'ts', 'jsx', 'tsx', 'mdx']
-const path = ['pages', 'src']
+const path = ['stories', 'pages', 'src']
 
 const content = path.map((d) => `./${d}/**/*.{${extensions.join(',')}}`)
 
@@ -24,6 +26,7 @@ module.exports = {
       fontFamily: {
         bungee: ['var(--font-bungee)'],
         notoSansKR: ['var(--font-notoSansKR)'],
+        roboto: ['var(--font-roboto)'],
       },
     },
   },

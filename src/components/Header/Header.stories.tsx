@@ -4,7 +4,7 @@ import Header from './Header'
 type Story = StoryObj<typeof Header>
 
 const meta: Meta<typeof Header> = {
-  title: 'Header',
+  title: 'Component/Header',
   component: Header,
 }
 

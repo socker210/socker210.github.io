@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
-import { Bungee, Noto_Sans_KR } from 'next/font/google'
+import { Bungee, Noto_Sans_KR, Roboto } from 'next/font/google'
+import tw, { styled } from 'twin.macro'
 
 interface FontProps {
   children: ReactNode
@@ -13,16 +14,29 @@ const bungee = Bungee({
 })
 
 const notoSansKR = Noto_Sans_KR({
-  weight: ['100', '300', '400', '500', '700', '900'],
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-notoSansKR',
 })
 
-const fontVariables = [bungee.variable, notoSansKR.variable].join(' ')
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+})
+
+const fontVariables = [
+  bungee.variable,
+  notoSansKR.variable,
+  roboto.variable,
+].join(' ')
+
+const Root = styled.div(() => [tw`font-notoSansKR`])
 
 const Font: React.FC<FontProps> = ({ children }) => {
-  return <div className={fontVariables}>{children}</div>
+  return <Root className={fontVariables}>{children}</Root>
 }
 
 export default Font

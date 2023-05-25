@@ -4,7 +4,7 @@ import TypeWriter from './TypeWriter'
 type Story = StoryObj<typeof TypeWriter>
 
 const meta: Meta<typeof TypeWriter> = {
-  title: 'TypeWriter',
+  title: 'Component/TypeWriter',
   component: TypeWriter,
 }
 
