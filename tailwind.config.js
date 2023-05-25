@@ -1,5 +1,7 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 const extensions = ['js', 'ts', 'jsx', 'tsx', 'mdx']
-const path = ['pages', 'src']
+const path = ['stories', 'pages', 'src']
 
 const content = path.map((d) => `./${d}/**/*.{${extensions.join(',')}}`)
 
@@ -8,14 +10,23 @@ module.exports = {
   content,
   theme: {
     extend: {
+      spacing: {
+        'm-header': '3.5rem',
+        'pc-header': '5rem',
+        'm-spacing': '1rem',
+        'pc-spacing': '2rem',
+      },
       colors: {
         synthwave: {
-          purple: '#140628',
+          primary: '#140628',
+          secondary: '#F08506',
+          contrastText: '#e1f9fd',
         },
       },
       fontFamily: {
         bungee: ['var(--font-bungee)'],
         notoSansKR: ['var(--font-notoSansKR)'],
+        roboto: ['var(--font-roboto)'],
       },
     },
   },

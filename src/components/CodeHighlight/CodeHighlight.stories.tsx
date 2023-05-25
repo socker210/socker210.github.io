@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import CodeHighlight from './CodeHighlight'
 
 const meta: Meta<typeof CodeHighlight> = {
-  title: 'CodeHighlight',
+  title: 'Component/CodeHighlight',
   component: CodeHighlight,
 }
 
