@@ -3,7 +3,7 @@
 import { useRef, useEffect, useState } from 'react'
 import type { ReactNode, ElementType } from 'react'
 import { keyframes } from '@emotion/react'
-import tw, { styled } from 'twin.macro'
+import { styled } from 'twin.macro'
 
 interface TypeWriterProps {
   container?: ElementType
@@ -184,7 +184,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
 
   return (
     <>
-      <div ref={sourceRef} tw='fixed hidden w-0 h-0'>
+      <div ref={sourceRef} tw='fixed hidden h-0 w-0'>
         {children}
       </div>
       <Container ref={targetRef} as={container} caret={caret} />
