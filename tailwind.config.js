@@ -10,6 +10,9 @@ module.exports = {
   content,
   theme: {
     extend: {
+      zIndex: {
+        header: defaultTheme.zIndex[10],
+      },
       spacing: {
         'm-header': '3.5rem',
         'pc-header': '5rem',

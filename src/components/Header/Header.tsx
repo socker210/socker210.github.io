@@ -3,7 +3,7 @@ import { Block } from '@styles/snippets'
 import _Logo from '@components/Logo'
 
 const Root = styled.header(() => [
-  tw`sticky top-0`,
+  tw`sticky top-0 z-header`,
   tw`bg-synthwave-primary bg-opacity-60 backdrop-blur-sm`,
   tw`border-b border-solid border-synthwave-contrastText border-opacity-20`,
 ])
