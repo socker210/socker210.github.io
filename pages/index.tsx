@@ -1,20 +1,30 @@
+import tw, { styled } from 'twin.macro'
+import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import ProfileImage from '@components/ProfileImage'
+import { ContentBox } from '@styles/snippets'
 import type { NextPageWithLayout } from './_app'
 
 const Page: NextPageWithLayout = () => {
   return (
-    <div>
+    <ContentBox>
+      <ProfileImage src='assets/images/profile-circle.png' />
+    </ContentBox>
+  )
+}
+
+Page.getLayout = function (page) {
+  return (
+    <>
+      <Head>
+        <title>Junyong Park | Frontend Developer</title>
+      </Head>
+      <p tw='p-4 text-center text-xl'>안녕하세요 👋</p>
       <Header />
-      <div tw='h-screen p-pc-spacing'>
-        <p tw='text-2xl'>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quo
-          quam perspiciatis nisi, ad, harum et tenetur mollitia pariatur dolor
-          maxime esse beatae fugiat alias nobis tempore, ipsam vel inventore!
-        </p>
-      </div>
+      {page}
       <Footer />
-    </div>
+    </>
   )
 }
 
