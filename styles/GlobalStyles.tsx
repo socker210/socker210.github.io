@@ -5,6 +5,15 @@ const globalStyles = css({
   body: {
     ...tw`bg-synthwave-primary text-synthwave-contrastText`,
     ...tw`antialiased`,
+    '::-webkit-scrollbar': {
+      ...tw`w-2`,
+    },
+    '::-webkit-scrollbar-thumb': {
+      ...tw`bg-synthwave-secondary`,
+    },
+    '::-webkit-scrollbar-track': {
+      ...tw`bg-synthwave-primary`,
+    },
   },
 })
 
