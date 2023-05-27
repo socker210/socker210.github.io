@@ -2,7 +2,7 @@ import tw, { styled } from 'twin.macro'
 import { FaMedium, FaGithub, FaStackOverflow, FaNpm } from 'react-icons/fa'
 import _Logo from '@components/Logo'
 import { Block } from '@styles/snippets'
-import constant from './constant'
+import constant from '@src/constant'
 
 const Root = styled.footer(() => [
   tw`border-t-2 border-solid border-synthwave-secondary`,
