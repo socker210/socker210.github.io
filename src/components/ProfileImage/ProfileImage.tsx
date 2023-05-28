@@ -1,7 +1,8 @@
 import { useRef, useEffect } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 import tw, { theme, styled } from 'twin.macro'
 
-interface ProfileImageProps {
+interface ProfileImageProps extends ComponentPropsWithoutRef<'div'> {
   src: string
 }
 
@@ -35,7 +36,7 @@ const getBoxShadow = (width: number): string =>
     'colors.synthwave.primary'
   )} inset`
 
-const ProfileImage: React.FC<ProfileImageProps> = ({ src }) => {
+const ProfileImage: React.FC<ProfileImageProps> = ({ src, ...props }) => {
   const rootRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const ProfileImage: React.FC<ProfileImageProps> = ({ src }) => {
     }
   }, [src])
 
-  return <Root ref={rootRef} />
+  return <Root ref={rootRef} {...props} />
 }
 
 export default ProfileImage
