@@ -64,6 +64,7 @@ const paragraph = {
   Content: styled.p(() => [
     tw`text-[clamp(theme('fontSize.base'), 2.2vw, theme('fontSize.xl'))]`,
   ]),
+  Emphasis: styled.span(() => [tw`font-semibold text-synthwave-secondary`]),
 }
 
 const Page: NextPageWithLayout = () => {
@@ -77,7 +78,9 @@ const Page: NextPageWithLayout = () => {
           <paragraph.Container>
             <paragraph.Title>안녕하세요 👋</paragraph.Title>
             <paragraph.Content>
-              6년 동안 프론트엔드 개발자로서 웹 서비스 개발을 하였습니다.
+              6년 동안{' '}
+              <paragraph.Emphasis>프론트엔드 개발자</paragraph.Emphasis>로서 웹
+              서비스 개발을 하였습니다.
             </paragraph.Content>
             <paragraph.Content>
               효율적인 코드 작성을 위한 방법, 컴포넌트 구성에 따른 재사용성 증가
