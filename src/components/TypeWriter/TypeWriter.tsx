@@ -160,17 +160,22 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   })
 
   useEffect(() => {
-    if (sourceRef.current && targetRef.current) {
-      if (!typingRef.current) {
+    const targetEl = targetRef.current as HTMLDivElement
+    const sourceEl = sourceRef.current as HTMLDivElement
+
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0]
+
+      if (!typingRef.current && entry.isIntersecting) {
         typingRef.current = true
 
-        for (const child of targetRef.current.childNodes) {
-          targetRef.current.removeChild(child)
+        for (const child of targetEl.childNodes) {
+          targetEl.removeChild(child)
         }
 
         const tokens: Array<Token> = tokenize(
-          sourceRef.current.firstChild as Node,
-          targetRef.current
+          sourceEl.firstChild as Node,
+          targetEl
         )
 
         typing(tokens, typeSpeed)
@@ -179,6 +184,12 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
             typingRef.current = false
           })
       }
+    })
+
+    observer.observe(targetEl)
+
+    return () => {
+      observer.disconnect()
     }
   }, [renderCount, typeSpeed])
 
