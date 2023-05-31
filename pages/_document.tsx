@@ -12,8 +12,15 @@ export default function Document() {
         <meta name='og:description' content={`Junyong's personal website`} />
         <meta
           name='og:image'
+          content='http://socker210.github.io/assets/images/og-image.png'
+        />
+        <meta
+          name='og:image:secure_url'
           content='https://socker210.github.io/assets/images/og-image.png'
         />
+        <meta name='og:image:type' content='image/png' />
+        <meta name='og:image:width' content='1200' />
+        <meta name='og:image:height' content='630' />
         <meta name='og:locale' content='ko_KR' />
         <link rel='icon' href='favicon.ico' sizes='48x48' />
         <link rel='apple-touch-icon' href='apple-touch-icon.png' />
