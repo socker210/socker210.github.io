@@ -1,3 +1,4 @@
+import { useRef, useEffect } from 'react'
 import tw, { styled, theme } from 'twin.macro'
 import Head from 'next/head'
 import _Link from 'next/link'
@@ -10,7 +11,7 @@ import ProfileImage from '@components/ProfileImage'
 import Conveyor from '@components/ConveyorText'
 import TypeWriter from '@components/TypeWriter'
 import CodeHighlight from '@components/CodeHighlight'
-import { Vars, Block } from '@styles/snippets'
+import { Block } from '@styles/snippets'
 import constant from '@src/constant'
 import type { NextPageWithLayout } from './_app'
 
@@ -29,6 +30,7 @@ const nav = {
 
 const section = {
   Root: styled.section<{ onlyHeader?: boolean }>(({ onlyHeader = true }) => [
+    tw`opacity-0 transition-opacity duration-1000`,
     tw`p-spacing`,
     onlyHeader
       ? tw`min-h-[calc(100vh - theme('spacing.header-height'))]`
@@ -69,9 +71,45 @@ const text = `while(forever) {
 };`
 
 const Page: NextPageWithLayout = () => {
+  // TODO: should refactor
+  const section1Ref = useRef<HTMLDivElement>(null)
+  const section2Ref = useRef<HTMLDivElement>(null)
+  const section3Ref = useRef<HTMLDivElement>(null)
+  const section4Ref = useRef<HTMLDivElement>(null)
+  const section5Ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const e = entry.target as HTMLDivElement
+
+          if (entry.isIntersecting) {
+            e.style.setProperty('opacity', '1')
+          }
+        }
+      },
+      { threshold: 0.5 }
+    )
+
+    observer.observe(section1Ref.current as HTMLDivElement)
+    observer.observe(section2Ref.current as HTMLDivElement)
+    observer.observe(section3Ref.current as HTMLDivElement)
+    observer.observe(section4Ref.current as HTMLDivElement)
+    observer.observe(section5Ref.current as HTMLDivElement)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   return (
     <Block>
-      <section.Root onlyHeader={false} tw='flex items-center justify-center'>
+      <section.Root
+        ref={section1Ref}
+        onlyHeader={false}
+        tw='flex items-center justify-center'
+      >
         <section.Title>
           <span tw='text-[1.25em] font-medium text-synthwave-secondary'>
             안녕하세요
@@ -84,7 +122,10 @@ const Page: NextPageWithLayout = () => {
           웹서비스를 개발하고 있습니다
         </section.Title>
       </section.Root>
-      <section.Root tw='flex flex-col items-center justify-center'>
+      <section.Root
+        ref={section2Ref}
+        tw='flex flex-col items-center justify-center'
+      >
         <section.BackgroundTitle>Skills</section.BackgroundTitle>
         <p tw='my-3 text-xl sm:my-5 sm:text-2xl'>
           현재까지 이러한 것들을{' '}
@@ -102,7 +143,10 @@ const Page: NextPageWithLayout = () => {
           <Conveyor.Text>Git</Conveyor.Text>
         </Conveyor>
       </section.Root>
-      <section.Root tw='flex flex-col items-center justify-center'>
+      <section.Root
+        ref={section3Ref}
+        tw='flex flex-col items-center justify-center'
+      >
         <section.BackgroundTitle>MINDSET</section.BackgroundTitle>
         <TypeWriter>
           <span tw='text-xl sm:text-2xl'>
@@ -114,7 +158,10 @@ const Page: NextPageWithLayout = () => {
           </span>
         </TypeWriter>
       </section.Root>
-      <section.Root tw='flex flex-col items-center justify-center'>
+      <section.Root
+        ref={section4Ref}
+        tw='flex flex-col items-center justify-center'
+      >
         <section.BackgroundTitle tw='bg-[#e90000] text-white'>
           life
         </section.BackgroundTitle>
@@ -122,7 +169,10 @@ const Page: NextPageWithLayout = () => {
           <CodeHighlight text={text} />
         </div>
       </section.Root>
-      <section.Root tw='flex flex-col items-center justify-center'>
+      <section.Root
+        ref={section5Ref}
+        tw='flex flex-col items-center justify-center'
+      >
         <section.BackgroundTitle tw='flex items-center space-x-[0.5em] bg-[#f222ff]'>
           <span>Synthwave</span> <GrMusic />
         </section.BackgroundTitle>
