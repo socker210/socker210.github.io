@@ -108,7 +108,7 @@ Page.getLayout = (page) => {
     <>
       <Head>
         <title>About me | Junyong Park</title>
-        <meta name='og:title' content='About me | Junyong Park' />
+        <meta property='og:title' content='About me | Junyong Park' />
       </Head>
       <Header />
       {page}
