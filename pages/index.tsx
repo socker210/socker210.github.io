@@ -148,6 +148,7 @@ Page.getLayout = function (page) {
     <>
       <Head>
         <title>Junyong Park | Frontend Developer</title>
+        <meta name='og:title' content='Junyong Park | Frontend Developer' />
       </Head>
       <nav.Root as='nav'>
         <nav.Link href='/about-me'>
