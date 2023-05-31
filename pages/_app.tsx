@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Font from '@styles/Font'
 import GlobalStyles from '@styles/GlobalStyles'
+import { Vars } from '@styles/snippets'
 import '@styles/hljs-theme.css'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -19,9 +20,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const component = getLayout(<Component {...pageProps} />)
 
   return (
-    <Font>
-      <GlobalStyles />
-      {component}
-    </Font>
+    <Vars>
+      <Font>
+        <GlobalStyles />
+        {component}
+      </Font>
+    </Vars>
   )
 }

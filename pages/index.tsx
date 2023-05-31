@@ -10,27 +10,15 @@ import ProfileImage from '@components/ProfileImage'
 import Conveyor from '@components/ConveyorText'
 import TypeWriter from '@components/TypeWriter'
 import CodeHighlight from '@components/CodeHighlight'
-import { Block } from '@styles/snippets'
+import { Vars, Block } from '@styles/snippets'
 import constant from '@src/constant'
 import type { NextPageWithLayout } from './_app'
-
-const Root = styled.div`
-  --nav-height: ${() => theme('spacing.10')};
-  --header-height: ${() => theme('spacing.m-header')};
-  --spacing: ${() => theme('spacing.m-spacing')};
-
-  @media (min-width: ${theme('screens.sm')}) {
-    --nav-height: ${() => theme('spacing.14')};
-    --header-height: ${() => theme('spacing.pc-header')};
-    --spacing: ${() => theme('spacing.pc-spacing')};
-  }
-`
 
 const nav = {
   Root: styled(Block)(() => [
     tw`flex items-center justify-end`,
-    tw`h-[var(--nav-height)]`,
-    tw`px-[var(--spacing)]`,
+    tw`h-nav-height`,
+    tw`px-spacing`,
   ]),
   Link: styled(_Link)(() => [
     tw`inline-flex items-center justify-end space-x-2`,
@@ -41,10 +29,10 @@ const nav = {
 
 const section = {
   Root: styled.section<{ onlyHeader?: boolean }>(({ onlyHeader = true }) => [
-    tw`p-[var(--spacing)]`,
+    tw`p-spacing`,
     onlyHeader
-      ? tw`min-h-[calc(100vh - var(--header-height))]`
-      : tw`min-h-[calc(100vh - var(--nav-height) - var(--header-height))]`,
+      ? tw`min-h-[calc(100vh - theme('spacing.header-height'))]`
+      : tw`min-h-[calc(100vh - theme('spacing.nav-height') - theme('spacing.header-height'))]`,
   ]),
   Title: styled.h1(() => [
     tw`text-[clamp(theme('fontSize.2xl'), 4vw, theme('fontSize.6xl'))] text-center leading-tight`,
@@ -157,7 +145,7 @@ const Page: NextPageWithLayout = () => {
 
 Page.getLayout = function (page) {
   return (
-    <Root>
+    <>
       <Head>
         <title>Junyong Park | Frontend Developer</title>
       </Head>
@@ -169,7 +157,7 @@ Page.getLayout = function (page) {
       <Header />
       {page}
       <Footer />
-    </Root>
+    </>
   )
 }
 

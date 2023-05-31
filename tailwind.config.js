@@ -18,6 +18,11 @@ module.exports = {
         'pc-header': '5rem',
         'm-spacing': '1rem',
         'pc-spacing': '2rem',
+        'm-nav': defaultTheme.spacing[10],
+        'pc-nav': defaultTheme.spacing[14],
+        'nav-height': 'var(--nav-height)',
+        'header-height': 'var(--header-height)',
+        spacing: 'var(--spacing)',
       },
       colors: {
         synthwave: {
