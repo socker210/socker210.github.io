@@ -28,7 +28,7 @@ const Root = styled.div`
   );
 
   ${() => ({
-    ...tw`flex flex-nowrap overflow-hidden py-2`,
+    ...tw`flex w-full flex-nowrap overflow-hidden py-2`,
     ...tw`sm:py-4`,
   })}
 `

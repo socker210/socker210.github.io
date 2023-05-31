@@ -41,9 +41,11 @@ const llElementToElement = (element: Span): Element => {
 }
 
 const llTextToText = (text: llText): Text => {
+  const isBreakLine = text.value.length === 0
+
   return {
     type: 'text',
-    value: text.value,
+    value: isBreakLine ? ' ' : text.value,
   }
 }
 

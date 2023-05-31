@@ -3,8 +3,13 @@ import Head from 'next/head'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import ProfileImage from '@components/ProfileImage'
-import { Block, ContentBox } from '@styles/snippets'
+import { Block } from '@styles/snippets'
 import type { NextPageWithLayout } from '../_app'
+
+const Section = styled.section(() => [
+  tw`flex items-center justify-center`,
+  tw`min-h-[calc(100vh - theme('spacing.header-height'))] p-spacing`,
+])
 
 const Inner = styled.div`
   display: grid;
@@ -70,7 +75,7 @@ const paragraph = {
 const Page: NextPageWithLayout = () => {
   return (
     <Block>
-      <ContentBox>
+      <Section>
         <Inner>
           <profile.Container>
             <profile.Image src='assets/images/memoji.png' />
@@ -93,7 +98,7 @@ const Page: NextPageWithLayout = () => {
             </paragraph.Content>
           </paragraph.Container>
         </Inner>
-      </ContentBox>
+      </Section>
     </Block>
   )
 }
@@ -103,6 +108,7 @@ Page.getLayout = (page) => {
     <>
       <Head>
         <title>About me | Junyong Park</title>
+        <meta name='og:title' content='About me | Junyong Park' />
       </Head>
       <Header />
       {page}
