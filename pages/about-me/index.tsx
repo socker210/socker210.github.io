@@ -83,7 +83,7 @@ const Page: NextPageWithLayout = () => {
           <paragraph.Container>
             <paragraph.Title>안녕하세요 👋</paragraph.Title>
             <paragraph.Content>
-              6년 동안{' '}
+              펜션 예약, 리퍼브 판매, 전자제품 판매와 같은 이커머스 산업에서{' '}
               <paragraph.Emphasis>프론트엔드 개발자</paragraph.Emphasis>로서 웹
               서비스 개발을 하였습니다.
             </paragraph.Content>
