@@ -64,6 +64,8 @@ const section = {
   ]),
 }
 
+const typeWriterContainer = tw.p`text-center`
+
 const text = `while(forever) {
   sleep();
   eat();
@@ -118,8 +120,7 @@ const Page: NextPageWithLayout = () => {
             <ProfileImage src='assets/images/memoji-laptop.png' />
           </section.ProfileImageContainer>
           <section.Emphasis>프론트엔드 개발자</section.Emphasis>로서
-          <br />
-          웹서비스를 개발하고 있습니다
+          <br />웹 서비스를 개발하고 있습니다
         </section.Title>
       </section.Root>
       <section.Root
@@ -148,11 +149,11 @@ const Page: NextPageWithLayout = () => {
         tw='flex flex-col items-center justify-center'
       >
         <section.BackgroundTitle>MINDSET</section.BackgroundTitle>
-        <TypeWriter>
+        <TypeWriter container={typeWriterContainer}>
           <span tw='text-xl sm:text-2xl'>
             제품에 대한 이해와 사용자 경험 개선은 좋은 제품을 만드는데 중요한
             요소라고 생각합니다.
-            <br />
+            <span tw='my-2 block' />
             이러한 요소를 분석하고 개발하며 성장하는 발판으로 삼는 개발자가 되기
             위해 노력합니다.
           </span>
