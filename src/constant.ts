@@ -6,7 +6,7 @@ const constant = {
     npm: 'https://www.npmjs.com/~socker210',
     medium: 'https://medium.com/@socker210',
     stackoverflow: 'https://stackoverflow.com/users/5562984/socker210',
-    synthwaveMusic: 'https://www.youtube.com/watch?v=MVPTGNGiI-4',
+    synthwaveMusic: 'https://www.youtube.com/watch?v=4xDzrJKXOOY',
   },
 }
 
