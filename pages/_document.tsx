@@ -26,6 +26,10 @@ export default function Document() {
         <meta property='og:image:width' content='1200' />
         <meta property='og:image:height' content='630' />
         <meta property='og:locale' content='ko_KR' />
+        <meta
+          name='naver-site-verification'
+          content='b61af446d97fec7426af0918e7361f6ee26ee233'
+        />
         <link rel='icon' href='favicon.ico' sizes='48x48' />
         <link rel='apple-touch-icon' href='apple-touch-icon.png' />
       </Head>
