@@ -35,13 +35,23 @@ const Root = styled.div`
 
 const Inner = styled.div`
   animation: ${conveyorAnimation} 20s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+
+    &:not(:first-child) {
+      display: none;
+    }
+  }
 `
 
 const Conveyor = ({ children }: ConveyorProps): JSX.Element => {
   return (
     <Root>
       {conveyorLine.map((line) => (
-        <Inner key={line}>{children}</Inner>
+        <Inner key={line} aria-hidden={line > 0}>
+          {children}
+        </Inner>
       ))}
     </Root>
   )
