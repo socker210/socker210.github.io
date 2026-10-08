@@ -173,10 +173,19 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
           targetEl.removeChild(child)
         }
 
-        const tokens: Array<Token> = tokenize(
-          sourceEl.firstChild as Node,
-          targetEl
-        )
+        const sourceNode = sourceEl.firstChild
+
+        if (!sourceNode) {
+          typingRef.current = false
+          return
+        }
+
+        const tokens: Array<Token> = tokenize(sourceNode, targetEl)
+
+        if (tokens.length === 0) {
+          typingRef.current = false
+          return
+        }
 
         typing(tokens, typeSpeed)
           .start()
