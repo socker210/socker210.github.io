@@ -30,6 +30,7 @@ const Header: React.FC = () => {
             <Logo />
           </Link>
           <GithubLink
+            aria-label='GitHub profile'
             rel='noopener'
             title='Github'
             href={constant.link.github}

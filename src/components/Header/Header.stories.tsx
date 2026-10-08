@@ -11,6 +11,12 @@ const meta: Meta<typeof Header> = {
 export const Primary: Story = {
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        story:
+          'The external GitHub link exposes an accessible name to assistive technologies.',
+      },
+    },
   },
   render: () => {
     return (
